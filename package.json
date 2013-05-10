@@ -1,0 +1,27 @@
+{
+  "name": "jfgi",
+  "version": "0.0.1",
+  "description": "Console app for common web searches",
+  "dependencies": {
+    "request": "~2.16.6",
+    "coffee-script": "~1.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mal/jfgi.git"
+  },
+  "keywords": [
+    "jfgi",
+    "console",
+    "search"
+  ],
+  "author": {
+    "name": "Mal Graty",
+    "email": "mal.graty@googlemail.com"
+  },
+  "license": "MIT"
+}
