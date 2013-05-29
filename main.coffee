@@ -109,19 +109,28 @@ go = (url, parameters) ->
   cli.prompt()
   cli.resume()
 
+history = ->
+  return '' if @line.length is 0
+
+  index = @history.indexOf @line
+  if ~index
+    @history.splice index, 1
+
+  @history.unshift @line unless @line is 'exit'
+  @history.pop() if @history.length > @output.rows
+
+  @historyIndex = -1
+  @history[0]
+
 load = ->
   fs.readFile cache, 'utf-8', (err, data) ->
     if err
       error 'Unable to load history from ' + cache
     else
-      cli.history = data.split('\n').reverse()
+      cli.history = data.split '\n'
 
 save = ->
-  hash = {}
-  for line in cli.history
-    hash[line] = true
-  delete hash.exit
-  lines = Object.keys(hash).reverse().join '\n'
+  lines = cli.history.join '\n'
   fs.writeFileSync cache, lines, 'utf-8'
 
 # main
@@ -130,6 +139,9 @@ process.on 'exit', save
 process.on 'SIGHUP', process.exit
 
 cli = rl.createInterface process.stdin, process.stdout
+
+cli._addHistory = history
+cli.output.rows = 8192
 
 cli.on 'close', cmd.exit
 cli.on 'line', (line) ->
