@@ -35,6 +35,9 @@ cmd =
     else
       go 'http://www.google.co.uk/movies?hl=en&near=%s', query
 
+  gif: (query) ->
+    go 'http://www.google.co.uk/search?hl=en&tbm=isch&tbs=itp:animated&q=%s&safe=off', query
+
   img: (query) ->
     go 'http://www.google.co.uk/search?hl=en&tbm=isch&q=%s&safe=off', query
 
