@@ -1,4 +1,4 @@
 @echo off
-title jfgi
 
+title jfgi
 node.exe jfgi
